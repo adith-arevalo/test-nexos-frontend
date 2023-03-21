@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Autor>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Listado de Autores</h1>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear un Autor</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Fecha de nacimiento</th>
+            <th>Ciudad</th>
+            <th>Correo electrónico</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var autor in ViewData["Autores"] as Autor[])
+        {
+            <tr>
+                <td>@autor.Name</td>
+                <td>@autor.FechaNacimiento.ToShortDateString()</td>
+                <td>@autor.City</td>
+                <td>@autor.Email</td>
+                <td>
+
+                    <a asp-action="Edits" class="btn btn-warning" asp-route-id="@autor.Id">Editar</a> |
+                    <a asp-action="Details" class="btn btn-primary"  asp-route-id="@autor.Id">Detalles</a> |
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@autor.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
